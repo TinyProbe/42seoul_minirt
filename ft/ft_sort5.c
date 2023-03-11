@@ -24,8 +24,6 @@ void	ft_sort_u8(t_u8 *arr, t_i32 begin, t_i32 end)
 	len = end - begin;
 	buf[0] = (t_u8 *) malloc(sizeof(t_u8) * len);
 	buf[1] = (t_u8 *) malloc(sizeof(t_u8) * len);
-	if (!buf[0] || !buf[1])
-		return ;
 	ft_memcpy(buf[0], arr + begin, sizeof(t_u8) * len);
 	seq = 0;
 	while ((1 << seq) < (t_i32) len)
@@ -54,18 +52,16 @@ static void	unit_merge_sort(t_u8 **buf, t_i32 seq, size_t len)
 
 static t_i32	replace_buf(t_u8 **buf, t_i32 seq, size_t len, t_i32 *i)
 {
-	if (i[0] < ft_min(i[2] + (1 << seq), (t_i32) len))
+	if (i[0] < ft_min(i[2] + (1 << seq), (t_i32) len)
+		&& i[1] < ft_min(i[2] + (1 << seq) * 2, (t_i32) len))
 	{
-		if (i[1] < ft_min(i[2] + (1 << seq) * 2, (t_i32) len))
-		{
-			if (buf[seq & 1][i[0]] < buf[seq & 1][i[1]])
-				buf[!(seq & 1)][i[3]++] = buf[seq & 1][i[0]++];
-			else
-				buf[!(seq & 1)][i[3]++] = buf[seq & 1][i[1]++];
-		}
-		else
+		if (buf[seq & 1][i[0]] < buf[seq & 1][i[1]])
 			buf[!(seq & 1)][i[3]++] = buf[seq & 1][i[0]++];
+		else
+			buf[!(seq & 1)][i[3]++] = buf[seq & 1][i[1]++];
 	}
+	else if (i[0] < ft_min(i[2] + (1 << seq), (t_i32) len))
+		buf[!(seq & 1)][i[3]++] = buf[seq & 1][i[0]++];
 	else if (i[1] < ft_min(i[2] + (1 << seq) * 2, (t_i32) len))
 		buf[!(seq & 1)][i[3]++] = buf[seq & 1][i[1]++];
 	else

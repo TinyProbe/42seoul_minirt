@@ -6,7 +6,7 @@
 #    By: tkong <tkong@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/07 21:09:17 by tkong             #+#    #+#              #
-#    Updated: 2023/02/24 13:21:48 by tkong            ###   ########.fr        #
+#    Updated: 2023/02/28 18:21:00 by tkong            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,13 +28,13 @@ MLX		= $(MLX_DIR)libmlx.a
 SRC_DIR	= ./src/
 SRC_LST	= main.c
 SRC		= $(addprefix $(SRC_DIR), $(SRC_LST))
-INC		= ./src/minirt.h
+INC		= $(addprefix $(SRC_DIR), minirt.h)
 
 ifdef B
-SRC_DIR	= ./src/
-SRC_LST	= main.c
-SRC		= $(addprefix $(SRC_DIR), $(SRC_LST))
-INC		= ./src/minirt.h
+	SRC_DIR	= ./src_bonus/
+	SRC_LST	= main_bonus.c
+	SRC		= $(addprefix $(SRC_DIR), $(SRC_LST))
+	INC		= $(addprefix $(SRC_DIR), minirt_bonus.h)
 endif
 
 $(NAME): $(FT) $(MLX) $(INC) $(SRC) Makefile
