@@ -6,7 +6,7 @@
 /*   By: tkong <tkong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 21:39:05 by tkong             #+#    #+#             */
-/*   Updated: 2023/03/06 02:04:09 by tkong            ###   ########.fr       */
+/*   Updated: 2023/03/19 13:00:19 by tkong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,18 +116,20 @@ t_i8	*ft_substr(t_i8 const *s, t_u32 start, size_t len);
 t_i8	**ft_split(t_i8 const *s, t_i8 c);
 t_i8	**ft_split2(t_i8 const *s, const t_i8 *set);
 void	ft_delete_split(t_i8 **strs);
-void	ft_sort_i8(t_i8 *arr, t_i32 begin, t_i32 end);
-void	ft_sort_i16(t_i16 *arr, t_i32 begin, t_i32 end);
-void	ft_sort_i32(t_i32 *arr, t_i32 begin, t_i32 end);
-void	ft_sort_i64(t_i64 *arr, t_i32 begin, t_i32 end);
-void	ft_sort_u8(t_u8 *arr, t_i32 begin, t_i32 end);
-void	ft_sort_u16(t_u16 *arr, t_i32 begin, t_i32 end);
-void	ft_sort_u32(t_u32 *arr, t_i32 begin, t_i32 end);
-void	ft_sort_u64(t_u64 *arr, t_i32 begin, t_i32 end);
-void	ft_sort_f32(t_f32 *arr, t_i32 begin, t_i32 end);
-void	ft_sort_f64(t_f64 *arr, t_i32 begin, t_i32 end);
+void	ft_sort_f32(t_f32 *begin, t_f32 *end);
+void	ft_sort_f64(t_f64 *begin, t_f64 *end);
+void	ft_sort_i8(t_i8 *begin, t_i8 *end);
+void	ft_sort_i16(t_i16 *begin, t_i16 *end);
+void	ft_sort_i32(t_i32 *begin, t_i32 *end);
+void	ft_sort_i64(t_i64 *begin, t_i64 *end);
+void	ft_sort_isize(t_isize *begin, t_isize *end);
+void	ft_sort_u8(t_u8 *begin, t_u8 *end);
+void	ft_sort_u16(t_u16 *begin, t_u16 *end);
+void	ft_sort_u32(t_u32 *begin, t_u32 *end);
+void	ft_sort_u64(t_u64 *begin, t_u64 *end);
+void	ft_sort_usize(t_usize *begin, t_usize *end);
 void	ft_swap(void *a, void *b, size_t siz);
-void	ft_reverse(void *arr, t_i32 begin, t_i32 end, size_t siz);
+void	ft_reverse(void *begin, void *end, size_t siz);
 t_i32	ft_tolower(t_i32 c);
 t_i32	ft_toupper(t_i32 c);
 t_i32	ft_stoi(const t_i8 *str);

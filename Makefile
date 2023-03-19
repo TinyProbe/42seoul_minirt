@@ -6,14 +6,14 @@
 #    By: tkong <tkong@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/07 21:09:17 by tkong             #+#    #+#              #
-#    Updated: 2023/02/28 18:21:00 by tkong            ###   ########.fr        #
+#    Updated: 2023/03/13 05:26:52 by tkong            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= miniRT
 
 CPL		= cc
-OPT		= -Wall -Wextra -Werror -o $(NAME)
+OPT		= -Wall -Wextra -Werror -O2 -o $(NAME)
 LIB		= $(FT) $(MLX) -framework OpenGL -framework AppKit
 RM		= rm -f
 
@@ -26,7 +26,15 @@ MLX_HDR	= $(MLX_DIR)mlx.h
 MLX		= $(MLX_DIR)libmlx.a
 
 SRC_DIR	= ./src/
-SRC_LST	= main.c
+SRC_LST	= main.c\
+		  mlx_extend.c\
+		  utility.c\
+		  utility2.c\
+		  render.c\
+		  event.c\
+		  scan.c\
+		  object.c\
+		  object2.c
 SRC		= $(addprefix $(SRC_DIR), $(SRC_LST))
 INC		= $(addprefix $(SRC_DIR), minirt.h)
 

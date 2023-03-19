@@ -6,7 +6,7 @@
 /*   By: tkong <tkong@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 16:31:26 by tkong             #+#    #+#             */
-/*   Updated: 2023/03/07 03:00:10 by tkong            ###   ########.fr       */
+/*   Updated: 2023/03/16 07:16:27 by tkong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,36 +26,12 @@ typedef enum e_event
 {
 	KEYDOWN		= 2,
 	KEYUP		= 3,
-	MOUSEDOWN	= 4,
-	MOUSEUP		= 5,
-	MOUSEMOVE	= 6,
-	EXPOSE		= 12,
 	DESTROY		= 17,
 }	t_event;
 typedef enum e_key
 {
 	KEY_ESC		= 0x35,
-	KEY_SPACE	= 0x31,
-	KEY_0		= 0x1D,
-	KEY_MINUS	= 0x1B,
-	KEY_EQUAL	= 0x18,
-	KEY_UP		= 0x7E,
-	KEY_DOWN	= 0x7D,
-	KEY_LEFT	= 0x7B,
-	KEY_RIGHT	= 0x7C,
-	KEY_SHIFT	= 0x101,
-	KEY_REST	= 0x2B,
-	KEY_FSTOP	= 0x2F,
 }	t_key;
-
-typedef enum e_mouse
-{
-	LEFT_CLICK	= 0x01,
-	RIGHT_CLICK	= 0x02,
-	MID_CLICK	= 0x03,
-	SCROLL_UP	= 0x04,
-	SCROLL_DOWN	= 0x05,
-}	t_mouse;
 typedef enum e_form
 {
 	AMBIENT_LIGHTING,
@@ -70,10 +46,10 @@ typedef enum e_form
 }	t_form;
 typedef enum e_argb
 {
-	ALPHA,
-	RED,
-	GREEN,
 	BLUE,
+	GREEN,
+	RED,
+	ALPHA,
 }	t_argb;
 typedef enum e_error
 {
@@ -82,6 +58,7 @@ typedef enum e_error
 	ERROR_FILEOPEN,
 	ERROR_FILEFORMAT,
 	ERROR_INITFAIL,
+	ERROR_CAMERA,
 	ERROR_MAX,
 }	t_error;
 
@@ -111,23 +88,45 @@ typedef struct s_data
 	t_i32	bpp;
 	t_i32	llen;
 	t_i32	endian;
-}	t_data; 
+}	t_data;
 typedef struct s_mlx
 {
 	void	*_;
 	void	*win;
-	t_data	data;
+	t_data	dat;
 }	t_mlx;
 typedef struct s_a
 {
 	t_mlx		mlx;
 	t_list		obj;
+	t_obj		*camera;
 	t_i8		*filename;
 	const t_i8	*msg[ERROR_MAX];
 }	t_a;
 
-void	mlx_pixel_put2(t_data *data, t_i32 x, t_i32 y, t_i32 color);
+void	mlx_pixel_put2(t_data *dat, t_i32 x, t_i32 y, t_i32 color);
 t_i8	mlx_get_rgb(t_i32 color, t_argb part);
 void	mlx_set_rgb(t_i32 *color, t_argb part, t_i8 to);
+
+void	error(const t_i8 **msg, t_error err);
+t_i32	quit(void);
+t_i32	count_string(t_i8 **strs);
+t_vec	make_vec(t_f32 x, t_f32 y, t_f32 z);
+t_vec	extract_vec(t_a *a, t_i8 *vec);
+t_i32	extract_color(t_a *a, t_i8 *color);
+
+void	render(t_a *a);
+
+t_i32	key_down(t_i32 key, t_a *a);
+t_i32	mouse_down(t_i32 butten, t_i32 x, t_i32 y, t_a *a);
+
+void	scan_file(t_a *a);
+
+void	ambient_lighting(t_a *a, t_i8 **strs);
+void	camera(t_a *a, t_i8 **strs);
+void	light(t_a *a, t_i8 **strs);
+void	sphere(t_a *a, t_i8 **strs);
+void	plane(t_a *a, t_i8 **strs);
+void	cylinder(t_a *a, t_i8 **strs);
 
 #endif

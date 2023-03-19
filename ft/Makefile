@@ -6,13 +6,13 @@
 #    By: tkong <tkong@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/06 12:24:20 by tkong             #+#    #+#              #
-#    Updated: 2023/02/06 00:00:16 by tkong            ###   ########.fr        #
+#    Updated: 2023/03/19 12:57:41 by tkong            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= libft.a
 CC		= cc
-CFLAG	= -Wall -Wextra -Werror -c
+CFLAG	= -Wall -Wextra -Werror -O2 -c
 AR		= ar
 ARFLAG	= rcs
 SRC		= ft_fput.c\
@@ -21,16 +21,18 @@ SRC		= ft_fput.c\
 		  ft_iswhat2.c\
 		  ft_memory1.c\
 		  ft_memory2.c\
-		  ft_sort1.c\
-		  ft_sort2.c\
-		  ft_sort3.c\
-		  ft_sort4.c\
-		  ft_sort5.c\
-		  ft_sort6.c\
-		  ft_sort7.c\
-		  ft_sort8.c\
-		  ft_sort9.c\
-		  ft_sort9_1.c\
+		  ft_sort_f32.c\
+		  ft_sort_f64.c\
+		  ft_sort_i16.c\
+		  ft_sort_i32.c\
+		  ft_sort_i64.c\
+		  ft_sort_i8.c\
+		  ft_sort_isize.c\
+		  ft_sort_u16.c\
+		  ft_sort_u32.c\
+		  ft_sort_u64.c\
+		  ft_sort_u8.c\
+		  ft_sort_usize.c\
 		  ft_string1.c\
 		  ft_string2.c\
 		  ft_string3.c\

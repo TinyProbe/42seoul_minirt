@@ -6,7 +6,7 @@
 /*   By: tkong <tkong@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 09:57:27 by tkong             #+#    #+#             */
-/*   Updated: 2022/10/28 10:12:29 by tkong            ###   ########.fr       */
+/*   Updated: 2023/03/19 13:07:11 by tkong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,18 +50,23 @@ static void	ft_swap_half(void *a, void *b, size_t siz)
 	}
 }
 
-void	ft_reverse(void *arr, t_i32 begin, t_i32 end, size_t siz)
+void	ft_reverse(void *begin, void *end, size_t siz)
 {
+	t_i32	i;
+	t_i32	j;
+
+	i = 0;
+	j = 0;
 	if (siz == sizeof(t_u8))
-		while (begin < --end)
-			ft_swap((t_u8 *) arr + begin++, (t_u8 *) arr + end, siz);
+		while ((t_u8 *) begin + i < (t_u8 *) end - ++j)
+			ft_swap((t_u8 *) begin + i++, (t_u8 *) end - j, siz);
 	else if (siz == sizeof(t_u16))
-		while (begin < --end)
-			ft_swap((t_u16 *) arr + begin++, (t_u16 *) arr + end, siz);
+		while ((t_u16 *) begin + i < (t_u16 *) end - ++j)
+			ft_swap((t_u16 *) begin + i++, (t_u16 *) end - j, siz);
 	else if (siz == sizeof(t_u32))
-		while (begin < --end)
-			ft_swap((t_u32 *) arr + begin++, (t_u32 *) arr + end, siz);
+		while ((t_u32 *) begin + i < (t_u32 *) end - ++j)
+			ft_swap((t_u32 *) begin + i++, (t_u32 *) end - j, siz);
 	else if (siz == sizeof(t_u64))
-		while (begin < --end)
-			ft_swap((t_u64 *) arr + begin++, (t_u64 *) arr + end, siz);
+		while ((t_u64 *) begin + i < (t_u64 *) end - ++j)
+			ft_swap((t_u64 *) begin + i++, (t_u64 *) end - j, siz);
 }

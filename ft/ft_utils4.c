@@ -6,7 +6,7 @@
 /*   By: tkong <tkong@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 09:57:29 by tkong             #+#    #+#             */
-/*   Updated: 2023/03/07 01:29:28 by tkong            ###   ########.fr       */
+/*   Updated: 2023/03/19 13:08:25 by tkong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ t_i8	*ft_itoa(t_i32 n)
 		n /= 10;
 	}
 	buf[i] = '\0';
-	ft_reverse(buf, buf[0] == '-', i, sizeof(t_i8));
+	ft_reverse(buf + (buf[0] == '-'), buf + i, sizeof(t_i8));
 	dst = (t_i8 *) malloc(i + 1);
 	if (!dst)
 		return (dst);

@@ -1,39 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_sort4.c                                         :+:      :+:    :+:   */
+/*   ft_sort_u16.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tkong <tkong@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/28 09:56:55 by tkong             #+#    #+#             */
-/*   Updated: 2022/10/28 10:06:16 by tkong            ###   ########.fr       */
+/*   Created: 2022/10/28 09:57:03 by tkong             #+#    #+#             */
+/*   Updated: 2023/03/19 12:53:56 by tkong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft.h"
 
-static void		unit_merge_sort(t_i64 **buf, t_i32 seq, size_t len);
-static t_i32	replace_buf(t_i64 **buf, t_i32 seq, size_t len, t_i32 *i);
+static void		unit_merge_sort(t_u16 **buf, t_i32 seq, size_t len);
+static t_i32	replace_buf(t_u16 **buf, t_i32 seq, size_t len, t_i32 *i);
 
-void	ft_sort_i64(t_i64 *arr, t_i32 begin, t_i32 end)
+void	ft_sort_u16(t_u16 *begin, t_u16 *end)
 {
-	t_i64	*buf[2];
 	t_i32	seq;
-	size_t	len;
+	t_i32	len;
+	t_u16	*buf[2];
 
-	len = end - begin;
-	buf[0] = (t_i64 *) malloc(sizeof(t_i64) * len);
-	buf[1] = (t_i64 *) malloc(sizeof(t_i64) * len);
-	ft_memcpy(buf[0], arr + begin, sizeof(t_i64) * len);
 	seq = 0;
-	while ((1 << seq) < (t_i32) len)
+	len = end - begin;
+	buf[0] = (t_u16 *) malloc(sizeof(t_u16) * len);
+	buf[1] = (t_u16 *) malloc(sizeof(t_u16) * len);
+	ft_memcpy(buf[0], begin, sizeof(t_u16) * len);
+	while ((1 << seq) < len)
 		unit_merge_sort(buf, seq++, len);
-	ft_memcpy(arr + begin, buf[seq & 1], sizeof(t_i64) * len);
+	ft_memcpy(begin, buf[seq & 1], sizeof(t_u16) * len);
 	free(buf[0]);
 	free(buf[1]);
 }
 
-static void	unit_merge_sort(t_i64 **buf, t_i32 seq, size_t len)
+static void	unit_merge_sort(t_u16 **buf, t_i32 seq, size_t len)
 {
 	t_i32	i[4];
 
@@ -50,7 +50,7 @@ static void	unit_merge_sort(t_i64 **buf, t_i32 seq, size_t len)
 	}
 }
 
-static t_i32	replace_buf(t_i64 **buf, t_i32 seq, size_t len, t_i32 *i)
+static t_i32	replace_buf(t_u16 **buf, t_i32 seq, size_t len, t_i32 *i)
 {
 	if (i[0] < ft_min(i[2] + (1 << seq), (t_i32) len)
 		&& i[1] < ft_min(i[2] + (1 << seq) * 2, (t_i32) len))

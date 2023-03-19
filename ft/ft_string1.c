@@ -6,7 +6,7 @@
 /*   By: tkong <tkong@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 09:57:14 by tkong             #+#    #+#             */
-/*   Updated: 2023/01/30 16:11:16 by tkong            ###   ########.fr       */
+/*   Updated: 2023/03/13 21:24:55 by tkong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,28 @@
 
 size_t	ft_strlen(const t_i8 *s)
 {
-	size_t	len;
+	const t_i8	*p;
+	const t_i8	*q;
+	const t_u64	*pl;
+	t_u64		v;
 
-	len = 0;
-	while (s[len])
-		++len;
-	return (len);
+	p = s;
+	pl = (const t_u64 *) p-- - 1;
+	while (((t_u64)++p & (sizeof(t_u64) - 1)) != 0)
+		if (*p == '\0')
+			return (p - s);
+	while (++pl)
+	{
+		v = *pl;
+		if (((v - 0x0101010101010101UL) & ~v & 0x8080808080808080UL) != 0)
+		{
+			q = (const t_i8 *) pl - 1;
+			while (*++q)
+				;
+			return (q - s);
+		}
+	}
+	return (0);
 }
 
 t_i8	*ft_strchr(const t_i8 *s, t_i32 c)

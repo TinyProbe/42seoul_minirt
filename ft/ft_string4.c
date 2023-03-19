@@ -6,7 +6,7 @@
 /*   By: tkong <tkong@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 09:57:20 by tkong             #+#    #+#             */
-/*   Updated: 2023/03/06 00:22:53 by tkong            ###   ########.fr       */
+/*   Updated: 2023/03/13 12:24:49 by tkong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,10 +80,8 @@ size_t	ft_strcpy(t_i8 *dst, const t_i8 *src)
 {
 	size_t	i;
 
-	i = -1;
-	while (src[++i])
-		dst[i] = src[i];
-	dst[i] = '\0';
+	i = ft_strlen(src);
+	ft_memcpy(dst, src, i + 1);
 	return (i);
 }
 
