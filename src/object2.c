@@ -6,7 +6,7 @@
 /*   By: tkong <tkong@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 02:05:53 by tkong             #+#    #+#             */
-/*   Updated: 2023/03/13 02:06:02 by tkong            ###   ########.fr       */
+/*   Updated: 2023/04/25 16:47:56 by tkong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	cylinder(t_a *a, t_i8 **strs)
 {
 	t_obj	*obj;
 
-	if (count_string(strs) != 5)
+	if (count_string(strs) != 6)
 		error(a->msg, ERROR_FILEFORMAT);
 	obj = (t_obj *) malloc(sizeof(t_obj));
 	obj->form = CYLINDER;
