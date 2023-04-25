@@ -6,7 +6,7 @@
 /*   By: tkong <tkong@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 09:57:20 by tkong             #+#    #+#             */
-/*   Updated: 2023/04/25 17:09:19 by tkong            ###   ########.fr       */
+/*   Updated: 2023/04/25 17:59:15 by tkong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,13 @@ t_i8	**ft_split(t_i8 const *s, t_i8 c)
 
 t_i8	**ft_split2(t_i8 const *s, const t_i8 *set)
 {
-	static t_u8	code[CODE_SIZE];
+	t_bool	*code;
 	t_i8	*buf[100000];
 	t_i32	len;
 	t_i32	l;
 	t_i32	r;
 
-	r = -1;
-	while (set[++r])
-		code[(t_i32) set[r]] = TRUE;
+	code = ft_make_code(set);
 	len = 0;
 	l = 0;
 	r = -1;
@@ -87,13 +85,11 @@ size_t	ft_strcpy(t_i8 *dst, const t_i8 *src)
 
 t_i32	ft_strdel(t_i8 *dst, const t_i8 *set)
 {
-	static t_u8	code[CODE_SIZE];
+	t_bool	*code;
 	t_i32	i;
 	t_i32	j;
 
-	i = -1;
-	while (set[++i])
-		code[(t_i32) set[i]] = TRUE;
+	code = ft_make_code(set);
 	i = 0;
 	j = -1;
 	while (dst[++j])

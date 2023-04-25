@@ -6,7 +6,7 @@
 /*   By: tkong <tkong@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 09:56:28 by tkong             #+#    #+#             */
-/*   Updated: 2022/10/28 09:57:59 by tkong            ###   ########.fr       */
+/*   Updated: 2023/04/25 18:02:54 by tkong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ t_bool	ft_isspace(t_i32 c)
 
 t_bool	ft_islower(t_i32 c)
 {
-	return ((c >= 'a' && c <= 'z'));
+	return (c >= 'a' && c <= 'z');
 }
 
 t_bool	ft_isupper(t_i32 c)
 {
-	return ((c >= 'A' && c <= 'Z'));
+	return (c >= 'A' && c <= 'Z');
 }

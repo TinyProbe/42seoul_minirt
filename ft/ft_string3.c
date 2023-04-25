@@ -6,7 +6,7 @@
 /*   By: tkong <tkong@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 09:57:18 by tkong             #+#    #+#             */
-/*   Updated: 2023/01/21 22:03:17 by tkong            ###   ########.fr       */
+/*   Updated: 2023/04/25 17:59:15 by tkong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,13 +69,11 @@ t_i8	*ft_substr(t_i8 const *s, t_u32 start, size_t len)
 
 t_i8	*ft_strtrim(t_i8 const *s1, t_i8 const *set)
 {
-	t_u8	code[CODE_SIZE];
+	t_bool	*code;
 	t_i32	begin;
 	t_i32	end;
 
-	ft_bzero((void *) code, CODE_SIZE);
-	while (*set)
-		code[(t_i32) *(set++)] = 1;
+	code = ft_make_code(set);
 	begin = -1;
 	while (s1[++begin])
 		if (!code[(t_i32) s1[begin]])

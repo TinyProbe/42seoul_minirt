@@ -6,7 +6,7 @@
 /*   By: tkong <tkong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 21:39:05 by tkong             #+#    #+#             */
-/*   Updated: 2023/03/19 13:00:19 by tkong            ###   ########.fr       */
+/*   Updated: 2023/04/25 17:56:44 by tkong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,7 @@ void	ft_sort_u64(t_u64 *begin, t_u64 *end);
 void	ft_sort_usize(t_usize *begin, t_usize *end);
 void	ft_swap(void *a, void *b, size_t siz);
 void	ft_reverse(void *begin, void *end, size_t siz);
+t_bool	*ft_make_code(const char *set);
 t_i32	ft_tolower(t_i32 c);
 t_i32	ft_toupper(t_i32 c);
 t_i32	ft_stoi(const t_i8 *str);
