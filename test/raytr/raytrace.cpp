@@ -1,7 +1,17 @@
 #include <iostream>
 #include <cmath>
 #include <cstdio>
+#include <climits>
+
+#define INF FLT_MAX
+#define PI 3.1416f
+
 using namespace std;
+
+float	dtorad(float degree)
+{
+	return (degree * PI / 180.f);
+}
 
 typedef struct s_vec
 {
@@ -116,21 +126,11 @@ t_ray	make_ray(t_vec org, t_vec dir)
 	ray.dir = dir;
 	return (ray);
 }
-t_vec	at_point(t_ray ray, float t)
+t_vec	at_point(const t_ray *ray, float t)
 {
-	return (sum_vec(ray.org, mlt_vec2(ray.dir, t)));
+	return (sum_vec(ray->org, mlt_vec2(ray->dir, t)));
 }
-t_vec	base_color(t_ray ray)
-{
-	t_vec	unt_dir;
-	float	t;
-
-	unt_dir = unt_vec(ray.dir);
-	t = 0.5f * (unt_dir.y + 1.f);
-	return (sum_vec(mlt_vec2(make_vec(1.f, 1.f, 1.f), 1.f - t),\
-		mlt_vec2(make_vec(0.5f, 0.7f, 1.f), t)));
-}
-float	hit_sphere(const t_vec ctr, float radius, t_ray ray)
+float	hit_sphere(t_vec ctr, float radius, const t_ray *ray)
 {
 	t_vec	oc;
 	float	a;
@@ -138,9 +138,9 @@ float	hit_sphere(const t_vec ctr, float radius, t_ray ray)
 	float	c;
 	float	discriminant;
 
-	oc = sub_vec(ray.org, ctr);
-	a = dot(ray.dir, ray.dir);
-	h = dot(oc, ray.dir);
+	oc = sub_vec(ray->org, ctr);
+	a = dot(ray->dir, ray->dir);
+	h = dot(oc, ray->dir);
 	c = dot(oc, oc) - radius * radius;
 	discriminant = h * h - a * c;
 	if (discriminant < 0)
@@ -156,18 +156,20 @@ typedef struct s_record
 	float	t;
 	bool	front_face;
 }	t_record;
-void face_normal(t_record *rec, t_ray *ray, t_vec *outward_normal)
+void face_normal(t_record *rec, const t_ray *ray, t_vec outward_normal)
 {
-	rec->front_face = dot(ray->dir, *outward_normal) < 0;
-	rec->normal = rec->front_face ? *outward_normal : neg_vec(*outward_normal);
+	rec->front_face = dot(ray->dir, outward_normal) < 0;
+	if (rec->front_face)
+		rec->normal = outward_normal;
+	else
+		rec->normal = neg_vec(outward_normal);
 }
-
 typedef struct s_sphere
 {
 	t_vec	ctr;
 	float	radius;
 }	t_sphere;
-bool	hit(t_sphere *sph, t_ray *ray, float t_mn, float t_mx, t_record *rec)
+bool	hit(const t_sphere *sph, const t_ray *ray, float t_mn, float t_mx, t_record *rec)
 {
 	t_vec	oc;
 	float	a;
@@ -193,12 +195,49 @@ bool	hit(t_sphere *sph, t_ray *ray, float t_mn, float t_mx, t_record *rec)
 			return false;
 	}
 	rec->t = root;
-	rec->pos = at_point(*ray, rec->t);
+	rec->pos = at_point(ray, rec->t);
 	outward_normal = div_vec2(sub_vec(rec->pos, sph->ctr), sph->radius);
-	face_normal(rec, ray, &outward_normal);
+	face_normal(rec, ray, outward_normal);
 	return true;
 }
 
+typedef struct s_lst
+{
+	~s_lst() { while (_.size()) { delete _.back(); _.pop_back(); } }
+	vector<t_sphere *>	_;
+}	t_lst;
+bool	hit(const t_lst *lst, const t_ray *ray, float t_mn, float t_mx, t_record *rec)
+{
+	t_record	tmp;
+	bool		is_hit;
+	float		closest;
+	int			i;
+
+	is_hit = false;
+	closest = t_mx;
+	i = -1;
+	while (++i < (int) lst->_.size())
+	{
+		if (hit(lst->_[i], ray, t_mn, t_mx, &tmp))
+		{
+			is_hit = true;
+			closest = tmp.t;
+			*rec = *tmp;
+		}
+	}
+	return (is_hit);
+}
+
+t_vec	base_color(const t_ray *ray)
+{
+	t_vec	unt_dir;
+	float	t;
+
+	unt_dir = unt_vec(ray->dir);
+	t = 0.5f * (unt_dir.y + 1.f);
+	return (sum_vec(mlt_vec2(make_vec(1.f, 1.f, 1.f), 1.f - t),\
+		mlt_vec2(make_vec(0.5f, 0.7f, 1.f), t)));
+}
 void	write_color(t_vec clr)
 {
 	int				iclr;
@@ -211,10 +250,21 @@ void	write_color(t_vec clr)
 
 int	main(void)
 {
+	//screen
 	const float aspect_ratio = 16.f / 9.f;
 	const int image_width = 400;
 	const int image_height = image_width / aspect_ratio;
 
+	//world
+	t_lst lst;
+	lst._.push_back(new t_sphere);
+	lst._.back().ctr = make_vec(0, 0, -1);
+	lst._.back().radius = 0.5f;
+	lst._.push_back(new t_sphere);
+	lst._.back().ctr = make_vec(0, -100.5, -1);
+	lst._.back().radius = 100.f;
+
+	//camera
 	float viewport_height = 2.f;
 	float viewport_width = aspect_ratio * viewport_height;
 	float focal_length = 1.f;
