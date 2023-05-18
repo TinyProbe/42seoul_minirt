@@ -111,9 +111,24 @@ void	mlx_set_rgb(t_i32 *color, t_argb part, t_i8 to);
 void	error(const t_i8 **msg, t_error err);
 t_i32	quit(void);
 t_i32	count_string(t_i8 **strs);
-t_vec	make_vec(t_f32 x, t_f32 y, t_f32 z);
-t_vec	extract_vec(t_a *a, t_i8 *vec);
 t_i32	extract_color(t_a *a, t_i8 *color);
+
+// t_vec	make_vec_randomly(float, float)
+t_vec	extract_vec(t_a *a, t_i8 *vec);
+t_vec	make_vec(t_f32 x, t_f32 y, t_f32 z);
+t_vec	neg_vec(t_vec *v);
+t_vec	sum_vec(t_vec *v, t_vec *v2);
+t_vec	sub_vec(t_vec *v, t_vec *v2);
+t_vec	mlt_vec(t_vec *v, t_vec *v2);
+t_vec	div_vec(t_vec *v, t_vec *v2);
+t_vec	_mlt_vec(t_f32 t, t_vec *v);
+t_vec	mlt_vec_(t_vec *v, t_f32 t);
+t_vec	div_vec_(t_vec *v, t_f32 t);
+t_vec	cross(t_vec *v, t_vec *v2);
+t_f32	dot(t_vec *v, t_vec *v2);
+t_f32	length_squared(t_vec *v);
+t_f32	length(t_vec *v);
+t_vec	unt_vec(t_vec *v);
 
 void	render(t_a *a);
 

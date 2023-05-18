@@ -33,25 +33,18 @@ t_i32	count_string(t_i8 **strs)
 	return (i);
 }
 
-t_vec	make_vec(t_f32 x, t_f32 y, t_f32 z)
+t_i32	extract_color(t_a *a, t_i8 *color)
 {
-	t_vec	v;
+	t_i8	**rgb;
+	t_i32	rtn;
 
-	v.x = x;
-	v.y = y;
-	v.z = z;
-	return (v);
-}
-
-t_vec	extract_vec(t_a *a, t_i8 *vec)
-{
-	t_i8	**xyz;
-	t_vec	rtn;
-
-	xyz = ft_split(vec, ',');
-	if (count_string(xyz) != 3)
+	rgb = ft_split(color, ',');
+	if (count_string(rgb) != 3)
 		error(a->msg, ERROR_FILEFORMAT);
-	rtn = make_vec(ft_stof(xyz[0]), ft_stof(xyz[1]), ft_stof(xyz[2]));
-	ft_delete_split(xyz);
+	mlx_set_rgb(&rtn, ALPHA, (t_i8) 0);
+	mlx_set_rgb(&rtn, RED, (t_i8) ft_stoi(rgb[0]));
+	mlx_set_rgb(&rtn, GREEN, (t_i8) ft_stoi(rgb[1]));
+	mlx_set_rgb(&rtn, BLUE, (t_i8) ft_stoi(rgb[2]));
+	ft_delete_split(rgb);
 	return (rtn);
 }
