@@ -6,7 +6,7 @@
 /*   By: tkong <tkong@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 16:31:26 by tkong             #+#    #+#             */
-/*   Updated: 2023/05/20 09:28:04 by tkong            ###   ########.fr       */
+/*   Updated: 2023/05/20 09:42:26 by tkong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ typedef struct s_a
 }	t_a;
 
 void	mlx_pixel_put2(t_data *dat, t_i32 x, t_i32 y, t_i32 color);
-t_u8	mlx_get_rgb(t_i32 color, t_argb part);
+t_u8	mlx_get_rgb(t_i32 *color, t_argb part);
 void	mlx_set_rgb(t_i32 *color, t_argb part, t_u8 to);
 
 void	error(const t_i8 **msg, t_error err);
