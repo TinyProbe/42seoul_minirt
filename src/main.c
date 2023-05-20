@@ -6,7 +6,7 @@
 /*   By: tkong <tkong@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 13:27:11 by tkong             #+#    #+#             */
-/*   Updated: 2023/04/27 21:41:31 by tkong            ###   ########.fr       */
+/*   Updated: 2023/05/20 09:28:42 by tkong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ static void	error_message(t_a *a)
 	a->msg[ERROR_FILEOPEN] = "error: File open failed.\n";
 	a->msg[ERROR_FILEFORMAT] = "error: The file format is invalid.\n";
 	a->msg[ERROR_INITFAIL] = "error: Device create failed.\n";
+	a->msg[ERROR_AMBIENT] = "error: Need only one ambient light.\n";
 	a->msg[ERROR_CAMERA] = "error: Need only one camera.\n";
 }
 
@@ -53,7 +54,7 @@ static void	error_check(t_a *a, t_i32 ac, t_i8 **av)
 		|| av[1][len - 2] != 'r'
 		|| av[1][len - 1] != 't')
 		error(a->msg, ERROR_FILENAME);
-	a->filename = av[1];
+	a->file = av[1];
 	scan_file(a);
 }
 

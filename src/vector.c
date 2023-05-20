@@ -1,31 +1,33 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   vector.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tkong <tkong@student.42seoul.kr>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/19 22:17:20 by tkong             #+#    #+#             */
+/*   Updated: 2023/05/20 09:12:04 by tkong            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minirt.h"
 
-// t_vec	make_vec_randomly(float mn, float mx)
-// {
-// 	t_vec	v;
-
-// 	v.x = random(mn, mx);
-// 	v.y = random(mn, mx);
-// 	v.z = random(mn, mx);
-// 	return (v);
-// }
-
-t_vec	extract_vec(t_a *a, t_i8 *val)
+t_v3	extract_v3(t_a *a, t_i8 *val)
 {
 	t_i8	**xyz;
-	t_vec	v;
+	t_v3	v;
 
 	xyz = ft_split(val, ',');
 	if (count_string(xyz) != 3)
 		error(a->msg, ERROR_FILEFORMAT);
-	v = make_vec(ft_stof(xyz[0]), ft_stof(xyz[1]), ft_stof(xyz[2]));
+	v = make_v3(ft_stof(xyz[0]), ft_stof(xyz[1]), ft_stof(xyz[2]));
 	ft_delete_split(xyz);
 	return (v);
 }
 
-t_vec	make_vec(t_f32 x, t_f32 y, t_f32 z)
+t_v3	make_v3(t_f32 x, t_f32 y, t_f32 z)
 {
-	t_vec	v;
+	t_v3	v;
 
 	v.x = x;
 	v.y = y;
@@ -33,9 +35,9 @@ t_vec	make_vec(t_f32 x, t_f32 y, t_f32 z)
 	return (v);
 }
 
-t_vec	neg_vec(t_vec *v)
+t_v3	neg_v3(t_v3 *v)
 {
-	t_vec	v2;
+	t_v3	v2;
 
 	v2.x = -(v->x);
 	v2.y = -(v->y);
@@ -43,9 +45,9 @@ t_vec	neg_vec(t_vec *v)
 	return (v2);
 }
 
-t_vec	sum_vec(t_vec *v, t_vec *v2)
+t_v3	sum_v3(t_v3 *v, t_v3 *v2)
 {
-	t_vec	v3;
+	t_v3	v3;
 
 	v3.x = v->x + v2->x;
 	v3.y = v->y + v2->y;
@@ -53,9 +55,9 @@ t_vec	sum_vec(t_vec *v, t_vec *v2)
 	return (v3);
 }
 
-t_vec	sub_vec(t_vec *v, t_vec *v2)
+t_v3	sub_v3(t_v3 *v, t_v3 *v2)
 {
-	t_vec	v3;
+	t_v3	v3;
 
 	v3.x = v->x - v2->x;
 	v3.y = v->y - v2->y;
