@@ -6,7 +6,7 @@
 /*   By: tkong <tkong@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 16:31:26 by tkong             #+#    #+#             */
-/*   Updated: 2023/05/20 09:42:26 by tkong            ###   ########.fr       */
+/*   Updated: 2023/05/20 15:11:45 by tkong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,10 @@ typedef struct s_v3
 	t_f32	y;
 	t_f32	z;
 }	t_v3;
+typedef struct s_mat4
+{
+	t_f32	_[4][4];
+}	t_mat4;
 typedef struct s_obj
 {
 	t_form	form;
@@ -121,11 +125,15 @@ t_v3	div_v3(t_v3 *v, t_v3 *v2);
 t_v3	_mlt_v3(t_f32 t, t_v3 *v);
 t_v3	mlt_v3_(t_v3 *v, t_f32 t);
 t_v3	div_v3_(t_v3 *v, t_f32 t);
-t_v3	cross(t_v3 *v, t_v3 *v2);
 t_f32	dot(t_v3 *v, t_v3 *v2);
+t_v3	cross(t_v3 *v, t_v3 *v2);
 t_f32	length_squared(t_v3 *v);
 t_f32	length(t_v3 *v);
-t_v3	unt_v3(t_v3 *v);
+t_v3	normalize(t_v3 *v);
+
+void	init_mat4(t_mat4 *m);
+void	mlt_mat4(t_mat4 *m, t_mat4 *m2, t_mat4 *res);
+t_v3	matrans3(t_v3 *v, t_mat4 *m);
 
 void	render(t_a *a);
 
