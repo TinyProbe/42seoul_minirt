@@ -1,44 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vector.c                                           :+:      :+:    :+:   */
+/*   utility2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tkong <tkong@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/19 22:17:20 by tkong             #+#    #+#             */
-/*   Updated: 2023/05/21 17:29:21 by tkong            ###   ########.fr       */
+/*   Created: 2023/05/21 16:48:20 by tkong             #+#    #+#             */
+/*   Updated: 2023/05/21 17:54:49 by tkong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-t_v3	make_v3(t_f32 x, t_f32 y, t_f32 z)
+t_f32	to_degree(t_f32 radian)
 {
-	t_v3	v;
-
-	v.x = x;
-	v.y = y;
-	v.z = z;
-	return (v);
+	return (radian * 180 / PI);
 }
 
-t_v3	neg_v3(t_v3 *v)
+t_f32	to_radian(t_f32 degree)
 {
-	return (make_v3(-(v->x), -(v->y), -(v->z)));
+	return (degree * PI / 180);
 }
 
-t_v3	sum_v3(t_v3 *v, t_v3 *v2)
+void	mat4cpy(t_mat4 *dst, t_mat4 *src)
 {
-	return (make_v3(\
-		v->x + v2->x,\
-		v->y + v2->y,\
-		v->z + v2->z));
-}
-
-t_v3	sub_v3(t_v3 *v, t_v3 *v2)
-{
-	return (make_v3(\
-		v->x - v2->x,\
-		v->y - v2->y,\
-		v->z - v2->z));
+	ft_memcpy(dst->_[0], src->_[0], sizeof(t_f32) * 4);
+	ft_memcpy(dst->_[1], src->_[1], sizeof(t_f32) * 4);
+	ft_memcpy(dst->_[2], src->_[2], sizeof(t_f32) * 4);
+	ft_memcpy(dst->_[3], src->_[3], sizeof(t_f32) * 4);
 }

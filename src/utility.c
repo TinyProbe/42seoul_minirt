@@ -6,7 +6,7 @@
 /*   By: tkong <tkong@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 02:01:36 by tkong             #+#    #+#             */
-/*   Updated: 2023/05/20 09:19:20 by tkong            ###   ########.fr       */
+/*   Updated: 2023/05/21 17:27:03 by tkong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,19 @@ t_i32	count_string(t_i8 **strs)
 	while (strs[++i])
 		;
 	return (i);
+}
+
+t_v3	extract_v3(t_a *a, t_i8 *val)
+{
+	t_i8	**xyz;
+	t_v3	v;
+
+	xyz = ft_split(val, ',');
+	if (count_string(xyz) != 3)
+		error(a->msg, ERROR_FILEFORMAT);
+	v = make_v3(ft_stof(xyz[0]), ft_stof(xyz[1]), ft_stof(xyz[2]));
+	ft_delete_split(xyz);
+	return (v);
 }
 
 t_i32	extract_color(t_a *a, t_i8 *color)

@@ -6,7 +6,7 @@
 /*   By: tkong <tkong@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 16:31:26 by tkong             #+#    #+#             */
-/*   Updated: 2023/05/20 15:11:45 by tkong            ###   ########.fr       */
+/*   Updated: 2023/05/21 17:54:58 by tkong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 
 # define WID	800
 # define HEI	800
+# define PI		3.1416f
 
 typedef enum e_event
 {
@@ -114,6 +115,9 @@ void	error(const t_i8 **msg, t_error err);
 t_i32	quit(void);
 t_i32	count_string(t_i8 **strs);
 t_i32	extract_color(t_a *a, t_i8 *color);
+t_f32	to_degree(t_f32 radian);
+t_f32	to_radian(t_f32 degree);
+void	mat4cpy(t_mat4 *dst, t_mat4 *src);
 
 t_v3	extract_v3(t_a *a, t_i8 *val);
 t_v3	make_v3(t_f32 x, t_f32 y, t_f32 z);
@@ -133,7 +137,14 @@ t_v3	normalize(t_v3 *v);
 
 void	init_mat4(t_mat4 *m);
 void	mlt_mat4(t_mat4 *m, t_mat4 *m2, t_mat4 *res);
-t_v3	matrans3(t_v3 *v, t_mat4 *m);
+t_v3	mlt_v3mat(t_v3 *v, t_mat4 *m);
+
+void	x_rtt_mat4(t_mat4 *m, t_f32 degree);
+void	y_rtt_mat4(t_mat4 *m, t_f32 degree);
+void	z_rtt_mat4(t_mat4 *m, t_f32 degree);
+void	x_rtt_mat4_apply(t_mat4 *m, t_f32 degree);
+void	y_rtt_mat4_apply(t_mat4 *m, t_f32 degree);
+void	z_rtt_mat4_apply(t_mat4 *m, t_f32 degree);
 
 void	render(t_a *a);
 

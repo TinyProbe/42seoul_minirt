@@ -6,26 +6,21 @@
 /*   By: tkong <tkong@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 14:18:24 by tkong             #+#    #+#             */
-/*   Updated: 2023/05/20 15:11:34 by tkong            ###   ########.fr       */
+/*   Updated: 2023/05/21 15:13:06 by tkong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
 void	init_mat4(t_mat4 *m) {
-	t_i32	i;
-	t_i32	j;
-
-	i = -1;
-	while (++i < 4)
-	{
-		j = -1;
-		while (++j < 4)
-			if (i == j)
-				m->_[i][j] = 1;
-			else
-				m->_[i][j] = 0;
-	}
+	ft_bzero(m->_[0], sizeof(t_f32) * 4);
+	ft_bzero(m->_[1], sizeof(t_f32) * 4);
+	ft_bzero(m->_[2], sizeof(t_f32) * 4);
+	ft_bzero(m->_[3], sizeof(t_f32) * 4);
+	m->_[0][0] = 1;
+	m->_[1][1] = 1;
+	m->_[2][2] = 1;
+	m->_[3][3] = 1;
 }
 
 void	mlt_mat4(t_mat4 *m, t_mat4 *m2, t_mat4 *res) {
@@ -45,7 +40,7 @@ void	mlt_mat4(t_mat4 *m, t_mat4 *m2, t_mat4 *res) {
 	}
 }
 
-t_v3	matrans3(t_v3 *v, t_mat4 *m)
+t_v3	mlt_v3mat(t_v3 *v, t_mat4 *m)
 {
 	return (make_v3(\
 		v->x * m->_[0][0] + v->y * m->_[1][0] + v->z * m->_[2][0],\

@@ -6,7 +6,7 @@
 /*   By: tkong <tkong@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 22:17:27 by tkong             #+#    #+#             */
-/*   Updated: 2023/05/20 12:43:03 by tkong            ###   ########.fr       */
+/*   Updated: 2023/05/21 17:33:37 by tkong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,5 @@ t_f32	length(t_v3 *v)
 
 t_v3	normalize(t_v3 *v)
 {
-	t_f32	len;
-
-	len = length(v);
-	if (len == 0.f)
-		len = 1.f;
-	len = 1.f / len;
-	return (mlt_v3_(v, len));
+	return (mlt_v3_(v, 1.f / length(v)));
 }
