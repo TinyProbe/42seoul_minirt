@@ -6,7 +6,7 @@
 /*   By: tkong <tkong@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 22:17:27 by tkong             #+#    #+#             */
-/*   Updated: 2023/05/22 11:51:13 by tkong            ###   ########.fr       */
+/*   Updated: 2023/05/22 19:24:31 by tkong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ t_f32	length_squared(t_v3 *v)
 
 t_f32	length(t_v3 *v)
 {
-	return (sqrt(length_squared(v)));
+	return (pow(length_squared(v), 0.5f));
 }
 
 t_v3	normalize(t_v3 *v)

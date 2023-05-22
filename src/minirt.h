@@ -6,7 +6,7 @@
 /*   By: tkong <tkong@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 16:31:26 by tkong             #+#    #+#             */
-/*   Updated: 2023/05/22 14:46:51 by tkong            ###   ########.fr       */
+/*   Updated: 2023/05/22 19:37:14 by tkong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,8 @@ t_v3	cross(t_v3 *v, t_v3 *v2);
 t_f32	length_squared(t_v3 *v);
 t_f32	length(t_v3 *v);
 t_v3	normalize(t_v3 *v);
+t_v3	to_spherical(t_v3 *v);
+t_v3	to_cartesian(t_v3 *v);
 
 void	init_m4(t_mat4 *m);
 void	mlt_m4(t_mat4 *m, t_mat4 *m2, t_mat4 *res);
