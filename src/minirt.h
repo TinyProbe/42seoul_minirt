@@ -6,7 +6,7 @@
 /*   By: tkong <tkong@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 16:31:26 by tkong             #+#    #+#             */
-/*   Updated: 2023/05/21 17:54:58 by tkong            ###   ########.fr       */
+/*   Updated: 2023/05/22 14:46:51 by tkong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ typedef enum e_key
 }	t_key;
 typedef enum e_form
 {
-	AMB_LIGHT,
+	AMBIENT,
 	CAMERA,
 	LIGHT,
 	SPHERE,
@@ -114,12 +114,12 @@ void	mlx_set_rgb(t_i32 *color, t_argb part, t_u8 to);
 void	error(const t_i8 **msg, t_error err);
 t_i32	quit(void);
 t_i32	count_string(t_i8 **strs);
-t_i32	extract_color(t_a *a, t_i8 *color);
+t_v3	ext_v3(t_a *a, t_i8 *val);
+t_i32	ext_color(t_a *a, t_i8 *color);
 t_f32	to_degree(t_f32 radian);
 t_f32	to_radian(t_f32 degree);
-void	mat4cpy(t_mat4 *dst, t_mat4 *src);
+void	m4cpy(t_mat4 *dst, t_mat4 *src);
 
-t_v3	extract_v3(t_a *a, t_i8 *val);
 t_v3	make_v3(t_f32 x, t_f32 y, t_f32 z);
 t_v3	neg_v3(t_v3 *v);
 t_v3	sum_v3(t_v3 *v, t_v3 *v2);
@@ -135,16 +135,18 @@ t_f32	length_squared(t_v3 *v);
 t_f32	length(t_v3 *v);
 t_v3	normalize(t_v3 *v);
 
-void	init_mat4(t_mat4 *m);
-void	mlt_mat4(t_mat4 *m, t_mat4 *m2, t_mat4 *res);
-t_v3	mlt_v3mat(t_v3 *v, t_mat4 *m);
+void	init_m4(t_mat4 *m);
+void	mlt_m4(t_mat4 *m, t_mat4 *m2, t_mat4 *res);
+t_v3	mlt_vm(t_v3 *v, t_mat4 *m);
+t_v3	mlt_vm4(t_v3 *v, t_mat4 *m);
+void	transpose(t_mat4 *m);
 
-void	x_rtt_mat4(t_mat4 *m, t_f32 degree);
-void	y_rtt_mat4(t_mat4 *m, t_f32 degree);
-void	z_rtt_mat4(t_mat4 *m, t_f32 degree);
-void	x_rtt_mat4_apply(t_mat4 *m, t_f32 degree);
-void	y_rtt_mat4_apply(t_mat4 *m, t_f32 degree);
-void	z_rtt_mat4_apply(t_mat4 *m, t_f32 degree);
+void	x_rtt_m4(t_mat4 *m, t_f32 degree);
+void	y_rtt_m4(t_mat4 *m, t_f32 degree);
+void	z_rtt_m4(t_mat4 *m, t_f32 degree);
+void	x_rtt_m4_mlt(t_mat4 *m, t_f32 degree);
+void	y_rtt_m4_mlt(t_mat4 *m, t_f32 degree);
+void	z_rtt_m4_mlt(t_mat4 *m, t_f32 degree);
 
 void	render(t_a *a);
 
@@ -153,11 +155,11 @@ t_i32	mouse_down(t_i32 butten, t_i32 x, t_i32 y, t_a *a);
 
 void	scan_file(t_a *a);
 
-void	amb_light(t_a *a, t_i8 **strs);
-void	camera(t_a *a, t_i8 **strs);
-void	light(t_a *a, t_i8 **strs);
-void	sphere(t_a *a, t_i8 **strs);
-void	plane(t_a *a, t_i8 **strs);
-void	cylinder(t_a *a, t_i8 **strs);
+void	ext_ambient(t_a *a, t_i8 **strs);
+void	ext_camera(t_a *a, t_i8 **strs);
+void	ext_light(t_a *a, t_i8 **strs);
+void	ext_sphere(t_a *a, t_i8 **strs);
+void	ext_plane(t_a *a, t_i8 **strs);
+void	ext_cylinder(t_a *a, t_i8 **strs);
 
 #endif

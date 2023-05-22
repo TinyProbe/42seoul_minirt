@@ -6,7 +6,7 @@
 /*   By: tkong <tkong@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 22:17:27 by tkong             #+#    #+#             */
-/*   Updated: 2023/05/21 17:33:37 by tkong            ###   ########.fr       */
+/*   Updated: 2023/05/22 11:51:13 by tkong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,23 @@
 
 t_f32	dot(t_v3 *v, t_v3 *v2)
 {
-	return (v->x * v2->x\
-		+ v->y * v2->y\
+	return (v->x * v2->x \
+		+ v->y * v2->y \
 		+ v->z * v2->z);
 }
 
 t_v3	cross(t_v3 *v, t_v3 *v2)
 {
 	return (make_v3(\
-		v->y * v2->z - v->z * v2->y,\
-		v->z * v2->x - v->x * v2->z,\
+		v->y * v2->z - v->z * v2->y, \
+		v->z * v2->x - v->x * v2->z, \
 		v->x * v2->y - v->y * v2->x));
 }
 
 t_f32	length_squared(t_v3 *v)
 {
-	return (v->x * v->x\
-		+ v->y * v->y\
+	return (v->x * v->x \
+		+ v->y * v->y \
 		+ v->z * v->z);
 }
 

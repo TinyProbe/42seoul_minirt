@@ -6,7 +6,7 @@
 /*   By: tkong <tkong@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 16:48:20 by tkong             #+#    #+#             */
-/*   Updated: 2023/05/21 17:54:49 by tkong            ###   ########.fr       */
+/*   Updated: 2023/05/22 14:52:34 by tkong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_f32	to_radian(t_f32 degree)
 	return (degree * PI / 180);
 }
 
-void	mat4cpy(t_mat4 *dst, t_mat4 *src)
+void	m4cpy(t_mat4 *dst, t_mat4 *src)
 {
 	ft_memcpy(dst->_[0], src->_[0], sizeof(t_f32) * 4);
 	ft_memcpy(dst->_[1], src->_[1], sizeof(t_f32) * 4);

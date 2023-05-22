@@ -6,7 +6,7 @@
 /*   By: tkong <tkong@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 02:04:58 by tkong             #+#    #+#             */
-/*   Updated: 2023/05/20 09:31:52 by tkong            ###   ########.fr       */
+/*   Updated: 2023/05/22 14:43:07 by tkong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,17 +46,17 @@ static void	line_analyze(t_a *a, t_i8 *line)
 	if (count_string(strs) > 0)
 	{
 		if (!ft_strcmp(strs[0], "A"))
-			amb_light(a, strs);
+			ext_ambient(a, strs);
 		else if (!ft_strcmp(strs[0], "C"))
-			camera(a, strs);
+			ext_camera(a, strs);
 		else if (!ft_strcmp(strs[0], "L"))
-			light(a, strs);
+			ext_light(a, strs);
 		else if (!ft_strcmp(strs[0], "sp"))
-			sphere(a, strs);
+			ext_sphere(a, strs);
 		else if (!ft_strcmp(strs[0], "pl"))
-			plane(a, strs);
+			ext_plane(a, strs);
 		else if (!ft_strcmp(strs[0], "cy"))
-			cylinder(a, strs);
+			ext_cylinder(a, strs);
 		else
 			error(a->msg, ERROR_FILEFORMAT);
 	}

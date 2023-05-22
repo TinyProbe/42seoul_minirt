@@ -6,13 +6,14 @@
 /*   By: tkong <tkong@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 14:18:24 by tkong             #+#    #+#             */
-/*   Updated: 2023/05/21 15:13:06 by tkong            ###   ########.fr       */
+/*   Updated: 2023/05/22 14:40:49 by tkong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void	init_mat4(t_mat4 *m) {
+void	init_m4(t_mat4 *m)
+{
 	ft_bzero(m->_[0], sizeof(t_f32) * 4);
 	ft_bzero(m->_[1], sizeof(t_f32) * 4);
 	ft_bzero(m->_[2], sizeof(t_f32) * 4);
@@ -23,7 +24,8 @@ void	init_mat4(t_mat4 *m) {
 	m->_[3][3] = 1;
 }
 
-void	mlt_mat4(t_mat4 *m, t_mat4 *m2, t_mat4 *res) {
+void	mlt_m4(t_mat4 *m, t_mat4 *m2, t_mat4 *res)
+{
 	t_i32	i;
 	t_i32	j;
 
@@ -32,18 +34,54 @@ void	mlt_mat4(t_mat4 *m, t_mat4 *m2, t_mat4 *res) {
 	{
 		j = -1;
 		while (++j < 4)
-			res->_[i][j]\
-				= m->_[i][0] * m2->_[0][j]\
-				+ m->_[i][1] * m2->_[1][j]\
-				+ m->_[i][2] * m2->_[2][j]\
+			res->_[i][j] \
+				= m->_[i][0] * m2->_[0][j] \
+				+ m->_[i][1] * m2->_[1][j] \
+				+ m->_[i][2] * m2->_[2][j] \
 				+ m->_[i][3] * m2->_[3][j];
 	}
 }
 
-t_v3	mlt_v3mat(t_v3 *v, t_mat4 *m)
+t_v3	mlt_vm(t_v3 *v, t_mat4 *m)
 {
 	return (make_v3(\
-		v->x * m->_[0][0] + v->y * m->_[1][0] + v->z * m->_[2][0],\
-		v->x * m->_[0][1] + v->y * m->_[1][1] + v->z * m->_[2][1],\
+		v->x * m->_[0][0] + v->y * m->_[1][0] + v->z * m->_[2][0], \
+		v->x * m->_[0][1] + v->y * m->_[1][1] + v->z * m->_[2][1], \
 		v->x * m->_[0][2] + v->y * m->_[1][2] + v->z * m->_[2][2]));
+}
+
+t_v3	mlt_vm4(t_v3 *v, t_mat4 *m)
+{
+	t_v3	v2;
+	t_f32	w;
+
+	v2.x = v->x * m->_[0][0] + v->y * m->_[1][0] \
+		+ v->z * m->_[2][0] + m->_[3][0];
+	v2.y = v->x * m->_[0][1] + v->y * m->_[1][1] \
+		+ v->z * m->_[2][1] + m->_[3][1];
+	v2.z = v->x * m->_[0][2] + v->y * m->_[1][2] \
+		+ v->z * m->_[2][2] + m->_[3][2];
+	w = v->x * m->_[0][3] + v->y * m->_[1][3] \
+		+ v->z * m->_[2][3] + m->_[3][3];
+	if (w != 1 && w != 0)
+	{
+		v2.x /= w;
+		v2.y /= w;
+		v2.z /= w;
+	}
+	return (v2);
+}
+
+void	transpose(t_mat4 *m)
+{
+	t_i32	i;
+	t_i32	j;
+
+	i = -1;
+	while (++i < 4)
+	{
+		j = -1;
+		while (++j < i)
+			ft_swap(m->_[i] + j, m->_[j] + i, sizeof(t_f32));
+	}
 }
