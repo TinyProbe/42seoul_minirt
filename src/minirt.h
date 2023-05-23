@@ -6,7 +6,7 @@
 /*   By: tkong <tkong@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 16:31:26 by tkong             #+#    #+#             */
-/*   Updated: 2023/05/22 19:37:14 by tkong            ###   ########.fr       */
+/*   Updated: 2023/05/23 15:23:41 by tkong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,7 +141,7 @@ void	init_m4(t_mat4 *m);
 void	mlt_m4(t_mat4 *m, t_mat4 *m2, t_mat4 *res);
 t_v3	mlt_vm(t_v3 *v, t_mat4 *m);
 t_v3	mlt_vm4(t_v3 *v, t_mat4 *m);
-void	transpose(t_mat4 *m);
+void	transpose4(t_mat4 *m);
 
 void	x_rtt_m4(t_mat4 *m, t_f32 degree);
 void	y_rtt_m4(t_mat4 *m, t_f32 degree);

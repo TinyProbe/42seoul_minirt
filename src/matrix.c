@@ -6,7 +6,7 @@
 /*   By: tkong <tkong@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 14:18:24 by tkong             #+#    #+#             */
-/*   Updated: 2023/05/22 14:40:49 by tkong            ###   ########.fr       */
+/*   Updated: 2023/05/23 15:23:49 by tkong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ t_v3	mlt_vm4(t_v3 *v, t_mat4 *m)
 	return (v2);
 }
 
-void	transpose(t_mat4 *m)
+void	transpose4(t_mat4 *m)
 {
 	t_i32	i;
 	t_i32	j;
